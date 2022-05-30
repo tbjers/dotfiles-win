@@ -1,0 +1,59 @@
+# -*-mode:toml-*- vim:ft=toml
+# -*-mode:go-template-*- vim:ft=toml
+
+# ~/.local/share/chezmoi/.chezmoi.toml.tmpl
+# =============================================================================
+# Used to customize configuration when doing a `chezmoi init`.
+#
+# This template file will trigger prompts to fill-in machine-specific
+# templateable values. The resulting file is then created at
+# `~/.config/chezmoi/chezmoi.toml`
+# See https://www.chezmoi.io/docs/how-to/
+#
+# {{- /* This file supports Go's text/template language. */}}
+
+# {{- $name := "" -}}
+# {{- if hasKey . "name" -}}
+# {{-   $name = .name -}}
+# {{- else -}}
+# {{-   $name := promptString "Git name for the author/committer" }}
+# {{- end -}}
+
+# {{- $email := "" -}}
+# {{- if hasKey . "email" -}}
+# {{-   $email = .email -}}
+# {{- else -}}
+# {{-   $email := promptString "Git email address for the author/committer" }}
+# {{- end -}}
+
+# {{- $gpgkey := "" -}}
+# {{- if hasKey . "gpgkey" -}}
+# {{-   $gpgkey = .gpgkey -}}
+# {{- else -}}
+# {{-   $gpgkey := promptString "GPG key in 0x format for chezmoi encryption and git signing" }}
+# {{- end -}}
+
+encryption = "gpg"
+format = "json"
+color = "on"
+pager = "less"
+
+[data]
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    gpgkey = {{ $gpgkey | quote }}
+
+[diff]
+    exclude = ["scripts"]
+
+[gpg]
+    recipient = {{ $gpgkey | quote }}
+    suffix = ".asc"
+
+[onepassword]
+    cache = true
+    command = "op.exe"
+    prompt = true
+
+[status]
+    exclude = ["scripts"]
