@@ -39,6 +39,7 @@
     {
         "defaults":
         {
+            "bellStyle": "none",
             "colorScheme": "Dracula",
             "cursorShape": "vintage",
             "font":
