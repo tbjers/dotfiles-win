@@ -327,5 +327,6 @@
             "yellow": "#808000"
         }
     ],
+    "useAcrylicInTabRow": true,
     "windowingBehavior": "useExisting"
 }
