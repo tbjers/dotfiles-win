@@ -31,6 +31,11 @@ if (Test-Path $ProfilePath\chezmoi-completion.ps1) {
     . $ProfilePath\chezmoi-completion.ps1
 }
 
+# Load starship completion from separate configuration file.
+if (Test-Path $ProfilePath\starship-completion.ps1) {
+    . $ProfilePath\starship-completion.ps1
+}
+
 # Load alias definitions from separate configuration file.
 if (Test-Path $ProfilePath\aliases.ps1) {
     . $ProfilePath\aliases.ps1
