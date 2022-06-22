@@ -60,7 +60,8 @@
     textconv = gpg --no-tty --decrypt
 
 [gpg]
-    # fuck this entire line of shenanigans...
+    # {{- /* fuck this entire line of shenanigans... */ -}}
+    # expanded path to gpg.exe from scoop
     program = "{{ mustRegexReplaceAll `\\` .chezmoi.homeDir `\\` }}{{ output "scoop" "which" "gpg" | trim | trimPrefix "~" | splitList `\` | join `\\` |  }}"
 
 [pull]
