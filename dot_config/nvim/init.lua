@@ -39,7 +39,8 @@ require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'editorconfig/editorconfig-vim' -- Editorconfig is life
-  use 'Lattay/vim-openscad'
+  use 'Lattay/vim-openscad' -- OpenSCAD just makes sense
+  use 'hashivim/vim-terraform' -- tear it down and build it back up
 end)
 
 -- By default title is off. Needed for detecting window as neovim instance (sworkstyle)
