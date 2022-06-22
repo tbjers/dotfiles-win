@@ -41,3 +41,7 @@ if (Get-Command "git" -ErrorAction "Ignore") {
 if (Get-Command "nvim" -ErrorAction "Ignore") {
     Set-Alias -Name "vim" -Value nvim
 }
+
+if (Get-Command "terraform" -ErrorAction "Ignore") {
+    Set-Alias -Name "tf" -Value Use-Terraform
+}

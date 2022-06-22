@@ -110,3 +110,16 @@ function Use-ChezmoiGit {
         chezmoi.exe git -- @Remaining
     }
 }
+
+function Use-Terraform {
+    [CmdletBinding(PositionalBinding=$False)]
+    param (
+        [Parameter(ValueFromRemainingArguments=$True)]
+        [string[]]
+        $Remaining
+    )
+
+    process {
+        op run --env-file=.env -- terraform @Remaining
+    }
+}
