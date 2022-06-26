@@ -49,8 +49,11 @@ if (Get-Command "nvim" -ErrorAction "Ignore") {
 
 $env:STARSHIP_CONFIG = "$HOME\.config\starship.toml"
 
-$env:XDG_DATA_HOME = "$HOME\.local\share"
-$env:XDG_CONFIG_HOME = "$HOME\.config"
 $env:XDG_CACHE_HOME = "$HOME\.cache"
+$env:XDG_CONFIG_HOME = "$HOME\.config"
+$env:XDG_DATA_HOME = "$HOME\.local\share"
+[System.Environment]::SetEnvironmentVariable('XDG_CACHE_HOME', $env:XDG_CACHE_HOME)
+[System.Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', $env:XDG_CONFIG_HOME)
+[System.Environment]::SetEnvironmentVariable('XDG_DATA_HOME', $env:XDG_DATA_HOME)
 
 Invoke-Expression (&starship init powershell)
