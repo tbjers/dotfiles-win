@@ -55,7 +55,8 @@
     gpgSign = true
 
 [credential]
-    helper = cache --timeout=7200
+	helper = manager-core
+    # helper = cache --timeout=7200
 
 [color]
     ui = true
@@ -72,7 +73,7 @@
 [gpg]
     # {{- /* fuck this entire line of shenanigans... */ -}}
     # expanded path to gpg.exe from scoop
-    program = "{{ mustRegexReplaceAll `\\` .chezmoi.homeDir `\\` }}{{ output "scoop" "which" "gpg" | trim | trimPrefix "~" | splitList `\` | join `\\` |  }}"
+    program = "{{ mustRegexReplaceAll `\\` .chezmoi.homeDir `/` }}{{ output "scoop" "which" "gpg" | trim | trimPrefix "~" | splitList `\` | join `/` |  }}"
 
 [pull]
     ff = only
