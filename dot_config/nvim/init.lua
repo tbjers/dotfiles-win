@@ -1,19 +1,18 @@
 -- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
-vim.cmd [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]]
+local packer_bootstrap = ensure_packer()
 
-local use = require('packer').use
-require('packer').startup(function()
+require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
@@ -35,9 +34,17 @@ require('packer').startup(function()
       ts_update()
     end,
   }
-  -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'petobens/poet-v' -- Poetry environment awareness
+  use {
+    'petobens/poet-v',
+    cond = function()
+      local has_poetry = vim.fn.executable("poetry")
+      if has_poetry == 0 then
+        return false
+      end
+      return true
+    end
+  }
   use {
     "williamboman/nvim-lsp-installer",
     "neovim/nvim-lspconfig",
@@ -49,6 +56,13 @@ require('packer').startup(function()
   use 'editorconfig/editorconfig-vim' -- Editorconfig is life
   use 'Lattay/vim-openscad' -- OpenSCAD just makes sense
   use 'hashivim/vim-terraform' -- tear it down and build it back up
+  use 'github/copilot.vim' -- Type for me, Senpai
+  use 'pprovost/vim-ps1' -- Powershell
+
+  -- Automatically set up configuration after cloning packer.nvim.
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- By default title is off. Needed for detecting window as neovim instance (sworkstyle)

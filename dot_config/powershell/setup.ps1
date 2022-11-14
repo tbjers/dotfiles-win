@@ -1,4 +1,4 @@
-# -*-mode:powershell-*- vim:ft=powershell
+# -*-mode:powershell-*- vim:ft=ps1
 
 # ~/.config/powershell/setup.ps1
 # =============================================================================
@@ -8,8 +8,6 @@
 # running `chezmoi apply` by the script `../../run_powershell.bat.tmpl`:
 #     - %USERPROFILE%\Documents\PowerShell
 #     - %USERPROFILE%\Documents\WindowsPowerShell
-#
-# TODO: Convert this to `~/dotfiles.ps1`
 
 # Requires that PowerShell be running with elevated privileges to be able to
 # change system properties.

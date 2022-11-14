@@ -1,4 +1,4 @@
-# dotfiles
+# Powershell dotfiles
 
 Chezmoi-based dotfiles for Windows PowerShell, Starship, and Scoop.
 

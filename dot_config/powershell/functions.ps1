@@ -1,4 +1,4 @@
-# -*-mode:powershell-*- vim:ft=powershell
+# -*-mode:powershell-*- vim:ft=ps1
 
 # ~/.config/powershell/profile.ps1
 # =============================================================================

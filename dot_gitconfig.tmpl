@@ -73,7 +73,7 @@
 [gpg]
     # {{- /* fuck this entire line of shenanigans... */ -}}
     # expanded path to gpg.exe from scoop
-    program = "{{ mustRegexReplaceAll `\\` .chezmoi.homeDir `/` }}{{ output "scoop" "which" "gpg" | trim | trimPrefix "~" | splitList `\` | join `/` |  }}"
+    program = "{{ output "scoop" "prefix" "gpg4win" | trim | splitList `\` | join `/` | }}/GnuPG/bin/gpg.exe"
 
 [pull]
     ff = only

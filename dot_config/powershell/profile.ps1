@@ -1,4 +1,4 @@
-# -*-mode:powershell-*- vim:ft=powershell
+# -*-mode:powershell-*- vim:ft=ps1
 
 # ~/.config/powershell/profile.ps1
 # =============================================================================
@@ -9,6 +9,8 @@
 #     - %USERPROFILE%\Documents\PowerShell
 #     - %USERPROFILE%\Documents\WindowsPowerShell
 #
+# IMPORTANT: do not try to edit $PROFILE or similar as it will be clobbered.
+#
 # See https://docs.microsoft.com/en/powershell/module/microsoft.powershell.core/about/about_profiles
 
 # Determine user profile parent directory.
@@ -16,29 +18,25 @@ $ProfilePath=Split-Path -parent $profile
 
 # Load functions declarations from separate configuration file.
 if (Test-Path $ProfilePath\functions.ps1) {
-    . $ProfilePath\functions.ps1
+    . "$ProfilePath\functions.ps1"
 }
 
 Import-Module DirColors
 
+# Set GNUPGHOME if the gnupg directory exists.
 if (Test-Path "$env:AppData\gnupg") {
     $env:GNUPGHOME = "$env:AppData\gnupg"
     [System.Environment]::SetEnvironmentVariable('GNUPGHOME', $env:GNUPGHOME)
 }
 
-# Load chezmoi completion from separate configuration file.
-if (Test-Path $ProfilePath\chezmoi-completion.ps1) {
-    . $ProfilePath\chezmoi-completion.ps1
-}
-
-# Load starship completion from separate configuration file.
-if (Test-Path $ProfilePath\starship-completion.ps1) {
-    . $ProfilePath\starship-completion.ps1
+# Load completion configuration files.
+Get-ChildItem -Path $ProfilePath\* -Include *-completion.ps1 -Name | ForEach-Object {
+    . "$ProfilePath\$_"
 }
 
 # Load alias definitions from separate configuration file.
 if (Test-Path $ProfilePath\aliases.ps1) {
-    . $ProfilePath\aliases.ps1
+    . "$ProfilePath\aliases.ps1"
 }
 
 # Configure editor for various tasks
