@@ -21,7 +21,7 @@ charset = utf-8
 end_of_line = lf
 
 # Set width of soft tabs and number of columns used for indentation levels.
-indent_size = 4
+indent_size = 2
 
 # Use soft tabs.
 indent_style = space

@@ -36,7 +36,7 @@
 encryption = "gpg"
 format = "json"
 color = "on"
-pager = "less"
+pager = ""
 
 [data]
     email = {{ $email | quote }}
@@ -45,8 +45,8 @@ pager = "less"
 
 [diff]
     exclude = ["scripts"]
-    program = "diff.exe"
-    pager = "diff-so-fancy"
+    program = "{{ output "scoop" "prefix" "diffutils" | trim | splitList `\` | join `/` }}/diff.exe -color=never | diff-so-fancy"
+#    pager = "diff-so-fancy"
 
 [gpg]
     recipient = {{ $gpgkey | quote }}

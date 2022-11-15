@@ -45,3 +45,7 @@ if (Get-Command "nvim" -ErrorAction "Ignore") {
 if (Get-Command "terraform" -ErrorAction "Ignore") {
     Set-Alias -Name "tf" -Value Use-Terraform
 }
+
+if (Get-Command "bat" -ErrorAction "Ignore") {
+    Set-Alias -Name "cat" -Value bat
+}
