@@ -200,7 +200,7 @@ if ($IsWindows) {
 #
 
 if ($IsWindows) {
-    if (!Get-Command "pyenv" -ErrorAction "Ignore") {
+    if (!(Get-Command "pyenv" -ErrorAction "Ignore")) {
         Write-Host "Installing pyenv and Python versions..." -ForegroundColor $ColorInfo
         git clone --quiet https://github.com/pyenv-win/pyenv-win.git "$HOME/.pyenv"
         $env:PYENV = $env:USERPROFILE + "\.pyenv\pyenv-win\"
