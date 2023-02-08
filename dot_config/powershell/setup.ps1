@@ -150,7 +150,8 @@ if ($IsWindows) {
         $bucketList = Invoke-Command -ScriptBlock { scoop bucket list }
         $buckets = (
             "extras",
-            "nerd-fonts"
+            "nerd-fonts",
+            "versions"
         )
         $buckets | ForEach-Object {
             if (!$bucketList.Contains($_)) {
@@ -166,22 +167,33 @@ if ($IsWindows) {
             "7zip",
             "bat",
             "chezmoi",
+            "cmake",
+            "ctags",
             "dark",
+            "diff-so-fancy",
             "diffutils",
+            "dotnet-sdk",
+            "emacs",
             "extras/gpg4win",
             "extras/vcredist2022",
             "gh",
             "git",
+            "go",
+            "gpg4win",
             "innounp",
             "jq",
             "lessmsi",
+            "lua",
             "neofetch",
             "neovim",
             "nerd-fonts/CascadiaCode-NF",
-            "nodejs-lts",
+            "nodejs16",
+            "npiperelay",
+            "powertoys",
             "putty",
             "ripgrep",
             "starship",
+            "terraform",
             "wget"
         )
         $apps | ForEach-Object {
