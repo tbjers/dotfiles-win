@@ -323,4 +323,3 @@ vim.g.poetv_set_environment = 1
 -- Who likes scattered tags files all over? Not I.
 local gutentags_cache_dir = vim.fn.stdpath 'cache' .. '/gutentags/'
 vim.g.gutentags_cache_dir = gutentags_cache_dir
-
